@@ -58,17 +58,16 @@ public class SlidingPagerStrip extends HorizontalScrollView implements ViewPager
     public SlidingPagerStrip(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        setPadding(0, 20, 0, 20);
-
         mOffset = 0;
 
         mPaint = new Paint();
-        mPaint.setColor(Color.BLUE);
+        mPaint.setAntiAlias(true);
+        mPaint.setColor(0xff242424);
         mPaint.setStyle(Paint.Style.FILL);
 
         mPath = new Path();
-        mPath.lineTo(20, 20);
-        mPath.lineTo(40, 0);
+        mPath.quadTo(20, 5, 30, 30);
+        mPath.quadTo(40, 5, 60, 0);
         mPath.lineTo(0, 0);
 
         mPathOffset = 0;
@@ -145,7 +144,10 @@ public class SlidingPagerStrip extends HorizontalScrollView implements ViewPager
             title.setTextSize(18f);
             title.setText(mAdapter.getPageTitle(i));
             title.setGravity(Gravity.CENTER_HORIZONTAL);
+            title.setBackgroundResource(R.drawable.title_background_default);
             title.setOnClickListener(this);
+
+            title.setPadding(0, 20, 0, 20);
 
             title.setTag(i);
 
